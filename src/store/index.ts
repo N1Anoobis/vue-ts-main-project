@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import coachesModule from "./modules/coaches/index";
+import requestsModule from "./modules/requests/index";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -16,5 +18,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     coaches: coachesModule,
+    requests: requestsModule,
   },
 });

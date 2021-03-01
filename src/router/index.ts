@@ -28,7 +28,7 @@ const routes: Array<RouteConfig> = [
     props: true,
     children: [
       {
-        path: "/contact",
+        path: "contact",
         // name: "Home",
         component: ContactCoach,
       },
