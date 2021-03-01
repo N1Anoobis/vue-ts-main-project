@@ -5,7 +5,7 @@
       <BaseCard>
         <div class="controls">
           <BaseButton mode="outline">Refresh</BaseButton>
-          <BaseButton link to="/register">Register</BaseButton>
+          <BaseButton v-if="!isCoach" link to="/register">Register</BaseButton>
         </div>
         <ul v-if="hasCoaches">
           <CoachItem
@@ -40,6 +40,10 @@ export default class CoachesList extends Vue {
     backend: true,
     career: true,
   };
+
+  get isCoach() {
+    return this.$store.getters["coaches/isCoach"];
+  }
 
   get filteredCoaches() {
     const coaches = this.$store.getters["coaches/coaches"];
