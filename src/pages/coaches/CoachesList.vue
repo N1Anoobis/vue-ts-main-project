@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section>filter</section>
+    <section><CoachFilter @change-filter="setFilters"></CoachFilter></section>
     <section>
       <BaseCard>
         <div class="controls">
@@ -26,19 +26,43 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import CoachItem from "../../components/coaches/CoachItem.vue";
+import CoachFilter from "../../components/coaches/CoachFilter.vue";
 
 @Component({
   components: {
     CoachItem,
+    CoachFilter,
   },
 })
 export default class CoachesList extends Vue {
+  activeFilters = {
+    frontend: true,
+    backend: true,
+    career: true,
+  };
+
   get filteredCoaches() {
-    return this.$store.getters["coaches/coaches"];
+    const coaches = this.$store.getters["coaches/coaches"];
+    return coaches.filter((coach: any) => {
+      if (this.activeFilters.frontend && coach.areas.includes("frontend")) {
+        return true;
+      }
+      if (this.activeFilters.backend && coach.areas.includes("backend")) {
+        return true;
+      }
+      if (this.activeFilters.career && coach.areas.includes("career")) {
+        return true;
+      }
+      return false;
+    });
   }
 
   get hasCoaches() {
     return this.$store.getters["coaches/hasCoaches"];
+  }
+
+  setFilters(updatedFilters: any) {
+    this.activeFilters = updatedFilters;
   }
 }
 </script>

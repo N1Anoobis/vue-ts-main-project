@@ -25,6 +25,7 @@ const routes: Array<RouteConfig> = [
     path: "/coaches/:id",
     // name: "About",
     component: CoachesDetail,
+    props: true,
     children: [
       {
         path: "/contact",
